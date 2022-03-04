@@ -1,5 +1,5 @@
 #!/bin/bash
-#Grab current UPS status
+#Grab current UPS status and output to prometheus text-collector file
 stats=$(sudo pwrstat -status | awk '{if(NR==11) print $2}')
 battery=$(sudo pwrstat -status | awk '{if(NR==15) print $3 $4}' | sed 's/%//')
 runtime=$(sudo pwrstat -status | awk '{if(NR==16) print $3 $4}' | rev | cut -c5- | rev)
