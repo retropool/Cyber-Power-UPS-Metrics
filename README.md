@@ -29,26 +29,26 @@ Steps:
 
 1) Install PowerPanel® Personal Linux https://www.cyberpowersystems.com/product/software/power-panel-personal/powerpanel-for-linux/ 
 
-_   sudo wget https://dl4jz3rbrsfum.cloudfront.net/software/PPL_64bit_v1.4.1.deb
-   sudo dpkg -i PPL_64bit_v1.4.1.deb_
+   sudo wget https://dl4jz3rbrsfum.cloudfront.net/software/PPL_64bit_v1.4.1.deb
+   sudo dpkg -i PPL_64bit_v1.4.1.deb
 
 2) Ensure pwrstatd.service is running:
 
-_   sudo systemctl status pwrstatd.service_
+   sudo systemctl status pwrstatd.service
    if not,
-_   sudo systemctl start pwrstatd.service_
+   sudo systemctl start pwrstatd.service
    
 3) Create empty Prometheus node exporer file in /var/lib/prometheus/node-exporter/
 
-_  sudo nano /var/lib/prometheus/node-exporter/upsmetrics.prom_
+  sudo nano /var/lib/prometheus/node-exporter/upsmetrics.prom
    
 4) Create script file
    
-_   sudo nano upsmetrics.sh_
+   sudo nano upsmetrics.sh
    
 5) Save the below into script file upsmetrics.sh
 
-_   #!/bin/bash
+   #!/bin/bash
    #Grab current UPS status
    stats=$(sudo pwrstat -status | awk '{if(NR==11) print $2}')
    battery=$(sudo pwrstat -status | awk '{if(NR==15) print $3 $4}' | sed 's/%//')
@@ -64,11 +64,11 @@ _   #!/bin/bash
    ups_stats_batterycap ${battery}
    ups_stats_runtime ${runtime}
    ups_stats_load ${load}
-   EOF_
+   EOF
    
    6) Create a cronjob to send the metrics to the node expoter file every 10min 
 
-      _crontab -e_
+      crontab -e_
       */5 * * * * sudo bash -l /home/scripts/ups.sh
       
    7) If you go to your prometheus metrics page you should now see UPS stats at the bottom
