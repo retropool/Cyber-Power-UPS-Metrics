@@ -85,4 +85,5 @@ Steps:
 For more details on configuration:
 
 https://wiki.archlinux.org/title/CyberPower_UPS
+
 https://utcc.utoronto.ca/~cks/space/blog/linux/CyberPowerPowerpanelSettings
