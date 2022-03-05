@@ -38,6 +38,7 @@ Steps:
         sudo systemctl status pwrstatd.service
    
 3) Create empty Prometheus node exporer file in /var/lib/prometheus/node-exporter/
+   This is where prometheus grabs text collector files from. Text-collector is enabled by default in Prometheus.
 
         sudo nano /var/lib/prometheus/node-exporter/upsmetrics.prom
    
@@ -74,3 +75,7 @@ Steps:
         
         http://192.168.1.100:9100/metrics
       
+
+For more details on configuration"
+https://wiki.archlinux.org/title/CyberPower_UPS
+https://utcc.utoronto.ca/~cks/space/blog/linux/CyberPowerPowerpanelSettings
