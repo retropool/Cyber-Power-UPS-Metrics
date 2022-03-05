@@ -74,7 +74,7 @@ Steps:
    
 6) Create a cronjob to send the metrics to the node exporter file every 10min 
 
-        crontab -e_
+        crontab -e
         */5 * * * * sudo bash -l /home/scripts/ups.sh
       
 7) If you go to your prometheus metrics page you should now see UPS stats at the bottom
