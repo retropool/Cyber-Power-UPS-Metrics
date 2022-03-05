@@ -82,7 +82,7 @@ Steps:
         http://192.168.1.100:9100/metrics
       
 
-For more details on configuration:
+For more details on UPS configuration:
 
 https://wiki.archlinux.org/title/CyberPower_UPS
 
