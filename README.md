@@ -29,14 +29,14 @@ Steps:
 
 1) Install PowerPanel® Personal Linux https://www.cyberpowersystems.com/product/software/power-panel-personal/powerpanel-for-linux/ 
 
-   sudo wget https://dl4jz3rbrsfum.cloudfront.net/software/PPL_64bit_v1.4.1.deb
-   sudo dpkg -i PPL_64bit_v1.4.1.deb
+        sudo wget https://dl4jz3rbrsfum.cloudfront.net/software/PPL_64bit_v1.4.1.deb
+        sudo dpkg -i PPL_64bit_v1.4.1.deb
 
 2) Ensure pwrstatd.service is running:
 
-   sudo systemctl status pwrstatd.service
+        sudo systemctl status pwrstatd.service
    if not,
-   sudo systemctl start pwrstatd.service
+        sudo systemctl start pwrstatd.service
    
 3) Create empty Prometheus node exporer file in /var/lib/prometheus/node-exporter/
 
