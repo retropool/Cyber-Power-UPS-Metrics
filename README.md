@@ -35,42 +35,41 @@ Steps:
 2) Ensure pwrstatd.service is running:
 
         sudo systemctl status pwrstatd.service
-   if not,
-        sudo systemctl start pwrstatd.service
    
 3) Create empty Prometheus node exporer file in /var/lib/prometheus/node-exporter/
 
-  sudo nano /var/lib/prometheus/node-exporter/upsmetrics.prom
+        sudo nano /var/lib/prometheus/node-exporter/upsmetrics.prom
    
 4) Create script file
    
-   sudo nano upsmetrics.sh
+        sudo nano upsmetrics.sh
    
 5) Save the below into script file upsmetrics.sh
 
-   #!/bin/bash
-   #Grab current UPS status
-   stats=$(sudo pwrstat -status | awk '{if(NR==11) print $2}')
-   battery=$(sudo pwrstat -status | awk '{if(NR==15) print $3 $4}' | sed 's/%//')
-   runtime=$(sudo pwrstat -status | awk '{if(NR==16) print $3 $4}' | rev | cut -c5- | rev)
-   load=$(sudo pwrstat -status | awk '{if(NR==17) print $2 $3 $4}' | rev | cut -c9- | rev)
+           #!/bin/bash
+           #Grab current UPS status
+           stats=$(sudo pwrstat -status | awk '{if(NR==11) print $2}')
+           battery=$(sudo pwrstat -status | awk '{if(NR==15) print $3 $4}' | sed 's/%//')
+           runtime=$(sudo pwrstat -status | awk '{if(NR==16) print $3 $4}' | rev | cut -c5- | rev)
+           load=$(sudo pwrstat -status | awk '{if(NR==17) print $2 $3 $4}' | rev | cut -c9- | rev)
 
-   stats=${stats//Normal/1}
-   stats=${stats//Power/2}
+           stats=${stats//Normal/1}
+           stats=${stats//Power/2}
 
-   sudo cat << EOF > "/var/lib/prometheus/node-exporter/upsmetrics.prom"
-   # TYPE ups_stats gauge
-   ups_stats_state ${stats}
-   ups_stats_batterycap ${battery}
-   ups_stats_runtime ${runtime}
-   ups_stats_load ${load}
-   EOF
+           sudo cat << EOF > "/var/lib/prometheus/node-exporter/upsmetrics.prom"
+           # TYPE ups_stats gauge
+           ups_stats_state ${stats}
+           ups_stats_batterycap ${battery}
+           ups_stats_runtime ${runtime}
+           ups_stats_load ${load}
+           EOF
    
    6) Create a cronjob to send the metrics to the node expoter file every 10min 
 
-      crontab -e_
-      */5 * * * * sudo bash -l /home/scripts/ups.sh
+        crontab -e_
+        */5 * * * * sudo bash -l /home/scripts/ups.sh
       
    7) If you go to your prometheus metrics page you should now see UPS stats at the bottom
-      http://192.168.1.100:9100/metrics
+        
+        http://192.168.1.100:9100/metrics
       
