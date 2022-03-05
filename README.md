@@ -1,7 +1,7 @@
 # Cyber Power UPS Metrics
 How to grab Cyber Power UPS Metrics and manipulate them for use with Prometheus Text Collector. In this example I was running Ubuntu 20.04 LTS.
 
-Power Panel will echo the below UPS stats which aren't JSON friendly (sudo pwrstat -status)
+Power Panel will echo the below UPS stats which aren't JSON friendly (sudo pwrstat -status).
 
         The UPS information shows as following:
         
@@ -25,6 +25,12 @@ Power Panel will echo the below UPS stats which aren't JSON friendly (sudo pwrst
                 
 The goal here is to use a series of awk, sed and rev commands to grab the neccesary values and send them to prometheus.
 Note: Prometheus won't accept text strings so we must convert text based values such as the "state" metric to values, then use the "Value Mapping" feature in Grafana to change the values back to text.
+
+In this script I'm only grabbing the following values:
+- State
+- Battery Capacity
+- Remaining Runtime
+- Load
 
 Steps:
 
@@ -66,12 +72,12 @@ Steps:
            ups_stats_load ${load}
            EOF
    
-   6) Create a cronjob to send the metrics to the node expoter file every 10min 
+6) Create a cronjob to send the metrics to the node expoter file every 10min 
 
         crontab -e_
         */5 * * * * sudo bash -l /home/scripts/ups.sh
       
-   7) If you go to your prometheus metrics page you should now see UPS stats at the bottom
+7) If you go to your prometheus metrics page you should now see UPS stats at the bottom
         
         http://192.168.1.100:9100/metrics
       
