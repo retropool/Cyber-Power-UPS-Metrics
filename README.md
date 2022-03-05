@@ -3,8 +3,8 @@ How to grab Cyber Power UPS Metrics and manipulate them for use with Prometheus 
 
 Power Panel will echo the below UPS stats which aren't JSON friendly (sudo pwrstat -status)
 
-The UPS information shows as following:
-
+        The UPS information shows as following:
+        
         Properties:
                 Model Name................... VP1600ELCD
                 Firmware Number.............. BF01912BCV1.x
