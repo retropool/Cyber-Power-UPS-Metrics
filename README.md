@@ -23,7 +23,8 @@ Power Panel will echo the below UPS stats which aren't JSON friendly (sudo pwrst
                 Test Result.................. Unknown
                 Last Power Event............. None
                 
-The goal here is to use a series of awk, sed and rev commands to grab the neccesary values and send them to prometheus. Note: Prometheus won't accept text strings so we must convert text based values such as the "state" metric to values, then use the "Value Mapping" feature in Grafana to change the values back to text.
+The goal here is to use a series of awk, sed and rev commands to grab the neccesary values and send them to prometheus.
+Note: Prometheus won't accept text strings so we must convert text based values such as the "state" metric to values, then use the "Value Mapping" feature in Grafana to change the values back to text.
 
 Steps:
 
