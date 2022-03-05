@@ -72,7 +72,7 @@ Steps:
            ups_stats_load ${load}
            EOF
    
-6) Create a cronjob to send the metrics to the node expoter file every 10min 
+6) Create a cronjob to send the metrics to the node exporter file every 10min 
 
         crontab -e_
         */5 * * * * sudo bash -l /home/scripts/ups.sh
