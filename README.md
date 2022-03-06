@@ -76,6 +76,7 @@ Steps:
    (Replace location with your own)
 
         crontab -e
+        
         */5 * * * * sudo bash -l /home/scripts/upsmetrics.sh
       
 7) If you go to your prometheus metrics page you should now see UPS stats at the bottom
