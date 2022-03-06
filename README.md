@@ -83,13 +83,13 @@ Steps:
         
         http://192.168.1.100:9100/metrics
         
-        
-# TYPE ups_stats gauge
+
+#TYPE ups_stats gauge
 ups_stats_state 1
 ups_stats_batterycap 100
 ups_stats_runtime 343
 ups_stats_load 28
-      
+
 
 For more details on UPS configuration:
 
