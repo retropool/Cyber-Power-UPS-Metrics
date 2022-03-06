@@ -48,11 +48,11 @@ Steps:
 
         sudo nano /var/lib/prometheus/node-exporter/upsmetrics.prom
    
-4) Create script file
+4) Create a script file in your desired location
    
         sudo nano upsmetrics.sh
    
-5) Save the below into script file upsmetrics.sh
+5) Download upsmetrics.sh or save the below into script file upsmetrics.sh
 
            #!/bin/bash
            #Grab current UPS status
@@ -72,10 +72,11 @@ Steps:
            ups_stats_load ${load}
            EOF
    
-6) Create a cronjob to send the metrics to the node exporter file every 10min 
+6) Create a cronjob to send the metrics to the node exporter file every 10min.
+   (Replace location with your own)
 
         crontab -e
-        */5 * * * * sudo bash -l /home/scripts/ups.sh
+        */5 * * * * sudo bash -l /home/scripts/upsmetrics.sh
       
 7) If you go to your prometheus metrics page you should now see UPS stats at the bottom
         
