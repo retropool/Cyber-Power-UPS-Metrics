@@ -8,7 +8,7 @@ load=$(sudo pwrstat -status | awk '{if(NR==17) print $2 $3 $4}' | rev | cut -c9-
 stats=${stats//Normal/1}
 stats=${stats//Power/2}
 
-sudo cat << EOF > "/var/lib/prometheus/node-exporter/ups.prom"
+sudo cat << EOF > "/var/lib/prometheus/node-exporter/upsmetrics.prom"
 # TYPE ups_stats gauge
 ups_stats_state ${stats}
 ups_stats_batterycap ${battery}
